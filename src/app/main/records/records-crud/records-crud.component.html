@@ -1,0 +1,60 @@
+
+<p-table #dt [columns]="cols" [value]="recordsByPlant">
+    <ng-template pTemplate="caption">
+            Records of the Plant
+            <div style="text-align: right">        
+                    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                    <input type="text" pInputText size="25" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+            </div>
+        <div class="ui-helper-clearfix">
+            <div class="ui-g ui-fluid">
+                    <div class="ui-g-4 ui-md-4">
+                        <p-dropdown [options]="plants" [(ngModel)]="selectedPlant" optionLabel="name" [style]="{'minWidth':'200px'}" style="float:left;" (onChange)="getRecordsByPlant()"></p-dropdown>
+                
+                    </div>
+                    <div class="ui-g-3 ui-md-3"></div>
+                    <div class="ui-g-4 ui-md-4">
+                        <p-calendar 
+                        [(ngModel)]="dateFilters"
+
+                         selectionMode="range"
+                         [readonlyInput]="true"
+                         [showIcon]="true"  
+                         (onSelect)="dt.filter($event, 'date', 'dateRangeFilter')"
+                         ></p-calendar>
+                
+                    </div>
+                    <div class="ui-g-1 ui-md-1">
+                        <button type="button" pButton icon="fa fa-file-o" iconPos="left" (click)="dt.exportCSV()" style="float:right;"></button>
+
+                    </div>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                {{col.header}}
+                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns" [ngSwitch]='true'>
+                <span *ngSwitchCase="col.field === 'date'">{{rowData[col.field] | date: 'dd-MM-yyyy'}}</span>
+                <span *ngSwitchDefault>
+                        <ng-container *ngIf="!isBoolean(rowData[col.field])&&col.field!=='date'">
+                            <span>{{rowData[col.field]}}</span>                           
+                        </ng-container>
+        
+                        <ng-container *ngIf="isBoolean(rowData[col.field])">
+                            <i *ngIf="rowData[col.field]===true" class="mdi mdi-check " style="color: #66bb6a"></i>
+                            <i *ngIf="rowData[col.field]===false" class="mdi mdi-window-close " style="color: #f06292"></i>                            
+                        </ng-container>
+                </span>
+                
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

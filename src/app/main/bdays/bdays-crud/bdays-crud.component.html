@@ -1,0 +1,24 @@
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<div class="row">
+    
+  <div class="col-6 col-lg-6 col-xlg-6">
+      <multiple-date-picker 
+      [showDaysOfSurroundingMonths]="false" 
+      [matIcons]="true" 
+      [disallowBackPastMonths]="true"
+      [disallowGoFuturMonths]="true" 
+      [dayClick]="false"
+      [sundayFirstDay]="true"   
+      [month]="myMonth"       
+      [(ngModel)]="initialCount">
+  </multiple-date-picker>
+  </div>
+  <div class="col-6 col-lg-6 col-xlg-6">
+      <h4 class="card-title">Select the day of the month what do you want to mark as a business day for the plant.</h4>
+      <br><br>
+      <p-dropdown [options]="plants" [(ngModel)]="selectedPlant" optionLabel="name" [style]="{'minWidth':'200px'}" (onChange)="getBdays()"></p-dropdown>
+      <br><br>
+      <p-button label="Save" icon="fa fa-check" (onClick)="save()"></p-button>
+  </div>
+  
+</div>
