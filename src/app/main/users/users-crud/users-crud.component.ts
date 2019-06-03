@@ -57,16 +57,16 @@ export class UsersCrudComponent implements OnInit, OnDestroy {
     })
     this.userService.getUsers().pipe(takeUntil(this.unsubscribe)).subscribe (users =>{
         this.users = users;
-       
+
     });
 
     this.cols = [
-      { field: 'name', header: 'Name' },
+      { field: 'name', header: 'Nombre' },
       { field: 'email', header: 'Email' },
-      { field: 'password', header: 'Password' },
-      { field: 'phone', header: 'Phone' },
+      { field: 'password', header: 'Contraseña' },
+      { field: 'phone', header: 'Telefono' },
       { field: 'rut', header: 'Rut' },
-      { field: 'type', header: 'Type' },
+      { field: 'type', header: 'Tipo' },
     ];
 
   }
@@ -90,20 +90,20 @@ export class UsersCrudComponent implements OnInit, OnDestroy {
         {
           if (exists.length===0){
             this.userService.newUser(this.user);
-            this.showMessage(true, `${this.user.name} has been registered`);
+            this.showMessage(true, `${this.user.name} ha sido registrado!`);
           } else {
-            this.showMessage(false, `${this.user.name} has email duplication`);
+            this.showMessage(false, `${this.user.name} email esta duplicado!`);
             return null;
           }
-          
+
       }
     else
         {
           if (exists.length===0||(exists.length===1&&exists[0].key===this.user.key)){
             this.userService.updateUser(this.user.key, this.user);
-            this.showMessage(true, `${this.user.name} has been updated!`);
+            this.showMessage(true, `${this.user.name} ha sido actualizado!`);
           } else {
-            this.showMessage(false, `${this.user.name} has email duplication!`);
+            this.showMessage(false, `${this.user.name} email esta duplicado!`);
             return null;
           }
         }
@@ -116,7 +116,7 @@ export class UsersCrudComponent implements OnInit, OnDestroy {
   delete() {
     if (this.user.key){
       this.userService.deleteUser(this.selectedUser.key).then(()=>{
-        this.showMessage(true, `${this.selectedUser.name} has been deleted.`);
+        this.showMessage(true, `${this.selectedUser.name} ha sido eliminado.`);
       }).catch((e)=>{
         this.showMessage(false, `${e}`);
       });
@@ -143,7 +143,7 @@ export class UsersCrudComponent implements OnInit, OnDestroy {
     this.user.password = Math.random().toString(36).slice(-8);
     this.userForm.controls['password'].patchValue(this.user.password);
   }
-  
+
   togglePass(){
     this.secure = !this.secure;
   }

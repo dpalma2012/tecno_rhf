@@ -38,14 +38,14 @@ export class BdaysCrudComponent implements OnInit {
       this.plants = plants;
       if (this.selectedPlant.key===undefined){
         this.selectedPlant = plants[0];
-        
-      } 
+
+      }
       if (this.selectedPlant!==undefined){
         this.getBdays();
-      }  
-      
+      }
+
   });
-    
+
   }
 
   getBdays(){
@@ -65,7 +65,7 @@ export class BdaysCrudComponent implements OnInit {
     this.bdays.forEach(bday=>{
       preCount.push(bday.date);
     })
-    
+
     let newdays = prepare.filter(item=>preCount.indexOf(item)<0);//new days to be inserted
     let deleteddays = this.bdays.filter(bday=>prepare.indexOf(bday.date)<0);//delete days to be deleted
     if (prepare.length > 0){
@@ -82,7 +82,7 @@ export class BdaysCrudComponent implements OnInit {
       let newbday = {date:date}
       this.bdayService.newBday(newbday, this.selectedPlant);
     })
-    let message = `Business days setting of ${this.selectedPlant.name} has been changed!`;
+    let message = `Los días hábiles de ${this.selectedPlant.name} han sido cambiados!`;
     this.messageService.add({severity:'info', summary:'Success', detail:message});
   }
 

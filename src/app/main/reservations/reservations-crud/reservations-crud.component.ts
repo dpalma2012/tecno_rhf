@@ -47,16 +47,16 @@ export class ReservationsCrudComponent implements OnInit {
           this.getReservations();
         })
       }
-      
+
 
     });
     this.cols = [
       { field: 'id', header: 'Id'},
-      { field: 'date', header: 'date'},
-      { field: 'plantName', header: 'Plant'},
-      { field: 'specieName', header:'Specie'},
-      { field: 'equipName', header: 'Equipment'},
-      { field: 'patentTruck', header:'Patent Truck'}
+      { field: 'date', header: 'Fecha'},
+      { field: 'plantName', header: 'Planta'},
+      { field: 'specieName', header:'Producto'},
+      { field: 'equipName', header: 'Equipo'},
+      { field: 'patentTruck', header:'Patente Camión'}
     ];
   }
 
@@ -79,7 +79,7 @@ export class ReservationsCrudComponent implements OnInit {
         }))
       });
     })
-   
+
   }
 
   getPlantName(pId:string){

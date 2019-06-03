@@ -4,10 +4,10 @@
 <br><br>
  <p-table #dt [columns]="cols" [value]="whours" selectionMode="single" [(selection)]="selectedWhour" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
     <ng-template pTemplate="caption">
-        List of Working Hours
-        <div style="text-align: right">        
+        Lista de horas de trabajo
+        <div style="text-align: right">
                 <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-                <input type="text" pInputText size="25" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                <input type="text" pInputText size="25" placeholder="Filtro" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
         </div>
     </ng-template>
     <ng-template pTemplate="header" let-columns>
@@ -29,7 +29,7 @@
             </td>
             <td>
                     <i *ngIf="rowData['month']===true" class="mdi mdi-check " style="color: #66bb6a"></i>
-                    <i *ngIf="rowData['month']===false" class="mdi mdi-window-close " style="color: #f06292"></i> 
+                    <i *ngIf="rowData['month']===false" class="mdi mdi-window-close " style="color: #f06292"></i>
             </td>
             <td>
                     <span>{{toFormatTime(rowData['start'] )}}</span>
@@ -42,47 +42,47 @@
             </td>
             <td>
                     <i *ngIf="rowData['active']===true" class="mdi mdi-check " style="color: #66bb6a"></i>
-                    <i *ngIf="rowData['active']===false" class="mdi mdi-window-close " style="color: #f06292"></i> 
+                    <i *ngIf="rowData['active']===false" class="mdi mdi-window-close " style="color: #f06292"></i>
             </td>
 
         </tr>
     </ng-template>
-   
+
 </p-table>
 
-<p-dialog header="Working Hour Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="400" dismissableMask="true">
+<p-dialog header="Detalles de la hora de trabajo" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="400" dismissableMask="true">
     <div class="ui-g ui-fluid" *ngIf="whour">
         <div class="ui-g-12" >
             <div class="ui-g-4" style="margin-top:45px">
-                <label for="start">Start time</label>
+                <label for="start">Hora de inicio</label>
             </div>
             <div class="ui-g-8">
             <div class="form-group"  [class.has-danger]="!ctrlStart.valid&&!ctrlEnd.valid">
                 <ngb-timepicker [(ngModel)]="whour.start" [formControl]="ctrlStart" required></ngb-timepicker>
-            </div> 
+            </div>
             </div>
         </div>
         <div class="ui-g-12" >
             <div class="ui-g-4" style="margin-top:45px">
-                <label for="end">End time</label>
+                <label for="end">Hora de termino</label>
             </div>
             <div class="ui-g-8">
                 <div class="form-group" [class.has-danger]="!ctrlStart.valid&&!ctrlEnd.valid">
                     <ngb-timepicker [(ngModel)]="whour.end" [formControl]="ctrlEnd" required></ngb-timepicker>
-                </div> 
+                </div>
             </div>
         </div>
         <div class="ui-g-12" >
             <div class="ui-g-4">
-                <label for="brand">Working time</label>
+                <label for="brand">Tiempo de trabajo</label>
             </div>
-            <div class="ui-g-3">
+            <div class="ui-g-4">
                 <input pInputText type="number" id="wtime" [(ngModel)]="whour.wtime" [formControl]="ctrlWtime" placeholder="Required" [class.ng-dirty]="ctrlWtime.dirty" [class.ng-invalid]="ctrlWtime.valid"/>
             </div>
         </div>
         <div class="ui-g-12" *ngIf="!whour.date">
             <div class="ui-g-4">
-                <label for="brand">Month</label>
+                <label for="brand">Mes</label>
             </div>
             <div class="ui-g-8">
                 <p-checkbox [(ngModel)]="whour.month" id="month" binary="true"></p-checkbox>
@@ -90,7 +90,7 @@
         </div>
         <div class="ui-g-12">
             <div class="ui-g-4">
-                <label for="brand">Active</label>
+                <label for="brand">Activo</label>
             </div>
             <div class="ui-g-8">
                 <p-checkbox [(ngModel)]="whour.active" id="active" binary="true"></p-checkbox>
@@ -99,7 +99,7 @@
     </div>
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" pButton icon="fa fa-check" (click)="save()" label="Save" [disabled] ="(!ctrlStart.valid&&!ctrlEnd.valid   )||!ctrlWtime.valid"></button>
+            <button type="button" pButton icon="fa fa-check" (click)="save()" label="Guardar" [disabled] ="(!ctrlStart.valid&&!ctrlEnd.valid   )||!ctrlWtime.valid"></button>
         </div>
     </p-footer>
 </p-dialog>

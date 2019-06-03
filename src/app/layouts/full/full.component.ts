@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar'; 
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 @Component({
     selector: 'full-layout',
@@ -12,8 +12,9 @@ export class FullComponent implements OnInit {
 
     color = 'defaultdark';
     showSettings = false;
-    showMinisidebar = false; 
+    showMinisidebar = false;
     showDarktheme = false;
+    year = new Date();
 
 	public config: PerfectScrollbarConfigInterface = {};
 

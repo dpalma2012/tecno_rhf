@@ -3,10 +3,10 @@
 <br><br>
 <p-table #dt [columns]="cols" [value]="reservationsByPlant">
     <ng-template pTemplate="caption">
-            Reservations of the Plant
-            <div style="text-align: right">        
+            Reservaciones de Planta
+            <div style="text-align: right">
                     <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-                    <input type="text" pInputText size="25" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                    <input type="text" pInputText size="25" placeholder="Filtro" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
             </div>
     </ng-template>
     <ng-template pTemplate="header" let-columns>
@@ -20,7 +20,7 @@
     <ng-template pTemplate="body" let-rowData let-columns="columns">
         <tr>
             <td *ngFor="let col of columns" >
-                <span>{{rowData[col.field]}}</span>     
+                <span>{{rowData[col.field]}}</span>
             </td>
         </tr>
     </ng-template>

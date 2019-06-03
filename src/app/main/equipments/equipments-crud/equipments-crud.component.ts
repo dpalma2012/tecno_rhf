@@ -12,7 +12,7 @@ import {MessageService}  from 'primeng/api';
   templateUrl: './equipments-crud.component.html',
   styleUrls: ['./equipments-crud.component.css'],
   providers: [MessageService]
-  
+
 })
 export class EquipmentsCrudComponent implements OnInit {
 
@@ -52,7 +52,7 @@ export class EquipmentsCrudComponent implements OnInit {
         }))
       })
     });
-    
+
     this.equipForm = this.fb.group({
       'name': new FormControl('', Validators.compose([Validators.required, Validators.pattern(".*\\S.*[a-zA-z0-9 ]")])),
       'plant': new FormControl(null, Validators.required),
@@ -60,11 +60,11 @@ export class EquipmentsCrudComponent implements OnInit {
     })
 
     this.cols = [
-      { field: 'name', header: 'Name' },
-      { field: 'plantName', header: 'Plant' },
-      { field: 'location', header: 'Location' },
-      { field: 'active', header: 'Active' },
-      { field: 'status', header: 'Status' }
+      { field: 'name', header: 'Nombre' },
+      { field: 'plantName', header: 'Planta' },
+      { field: 'location', header: 'Ubicación' },
+      { field: 'active', header: 'Activo' },
+      { field: 'status', header: 'Estado' }
     ];
 
   }
@@ -98,20 +98,20 @@ export class EquipmentsCrudComponent implements OnInit {
       {
         if (exists.length ===0){
           this.equipService.newEquip(this.equip);
-          this.showMessage(true, `${this.equip.name} has been created`);
+          this.showMessage(true, `${this.equip.name} ha sido creado!`);
         } else {
-          this.showMessage(false, `${this.equip.name} has duplication`);
+          this.showMessage(false, `${this.equip.name} tiene duplicación!`);
           return null;
-        }  
+        }
       }
     else
       {
         if (exists.length===0||(exists.length===1&&exists[0].key===this.equip.key)){
 
           this.equipService.updateEquip(this.equip,nowPlantKey, this.prePlantKey)
-          this.showMessage(true, `${this.equip.name} has been updated!`);
+          this.showMessage(true, `${this.equip.name} ha sido actualizado!`);
         } else {
-          this.showMessage(false, `${this.equip.name} has duplication!`);
+          this.showMessage(false, `${this.equip.name} tiene duplicación!`);
           return null;
         }
       }
@@ -123,7 +123,7 @@ export class EquipmentsCrudComponent implements OnInit {
 
   delete() {
     this.equipService.deleteEquip(this.selectedEquip.key).then(()=>{
-      this.showMessage(true, `${this.selectedEquip.name} has been deleted!`);
+      this.showMessage(true, `${this.selectedEquip.name} ha sido eliminado!`);
     }).catch((e)=>{
       this.showMessage(false, `${e}`)
     });

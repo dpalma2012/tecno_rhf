@@ -1,10 +1,10 @@
 <p-toast [style]="{marginTop: '80px'}"></p-toast>
 <p-table #dt [columns]="cols" [value]="equips" selectionMode="single" [(selection)]="selectedEquip" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
   <ng-template pTemplate="caption">
-      List of Equipments
-      <div style="text-align: right">        
+      Listado de Equipos
+      <div style="text-align: right">
               <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-              <input type="text" pInputText size="25" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+              <input type="text" pInputText size="25" placeholder="Filtro" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
       </div>
   </ng-template>
   <ng-template pTemplate="header" let-columns>
@@ -17,32 +17,32 @@
   </ng-template>
   <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr [pSelectableRow]="rowData">
-          <td *ngFor="let col of columns"> 
-                                    
+          <td *ngFor="let col of columns">
+
               <ng-container *ngIf="!isBoolean(rowData[col.field])">
-                  <span>{{rowData[col.field]}}</span>                           
+                  <span>{{rowData[col.field]}}</span>
               </ng-container>
               <ng-container *ngIf="isBoolean(rowData[col.field])">
                   <i *ngIf="rowData[col.field]===true" class="mdi mdi-check " style="color: #66bb6a"></i>
-                  <i *ngIf="rowData[col.field]===false" class="mdi mdi-window-close " style="color: #f06292"></i>                            
+                  <i *ngIf="rowData[col.field]===false" class="mdi mdi-window-close " style="color: #f06292"></i>
               </ng-container>
           </td>
       </tr>
   </ng-template>
   <ng-template pTemplate="summary" let-rowData>
       <div style="text-align:left">
-          <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button>
+          <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Nuevo"></button>
       </div>
-  </ng-template>    
+  </ng-template>
 </p-table>
 
-<p-dialog header="Equipment Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="600" dismissableMask="true">
+<p-dialog header="Detalle de Equipo" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="600" dismissableMask="true">
   <div class="ui-g ui-fluid" *ngIf="equip">
-        
+
         <form [formGroup]="equipForm" (ngSubmit)="save()">
       <div class="ui-g-12">
           <div class="ui-g-2">
-              <label for="name">Name</label>
+              <label for="name">Nombre</label>
           </div>
           <div class="ui-g-6">
                 <input pInputText type="text" id="name" formControlName="name" [(ngModel)]="equip.name" placeholder="Required" [class.ng-dirty]="equipForm.controls['name'].dirty" [class.ng-invalid]="!equipForm.controls['name'].valid" />
@@ -53,7 +53,7 @@
       </div>
       <div class="ui-g-12">
           <div class="ui-g-2">
-              <label for="plant">Plant</label>
+              <label for="plant">Planta</label>
           </div>
           <div class="ui-g-6">
             <p-dropdown [options]="plants"  [(ngModel)]="equip.plant" formControlName="plant" optionLabel="name" ></p-dropdown>
@@ -61,7 +61,7 @@
       </div>
       <div class="ui-g-12">
           <div class="ui-g-2">
-              <label for="active">Active</label>
+              <label for="active">Activo</label>
           </div>
           <div class="ui-g-6">
               <p-checkbox [(ngModel)]="equip.active" formControlName="active" id="active" binary="true"></p-checkbox>
@@ -71,15 +71,15 @@
 
             <div class="ui-g-2"></div>
             <div class="ui-g-4">
-                <button type="button" pButton icon="fa fa-close" (click)="delete()" [disabled]="newEquip" label="Delete"></button>
+                <button type="button" pButton icon="fa fa-close" (click)="delete()" [disabled]="newEquip" label="Eliminar"></button>
             </div>
             <div class="ui-g-4">
-                <button pButton type="submit" icon="fa fa-check" label="Submit" [disabled]="!equipForm.valid"></button>
+                <button pButton type="submit" icon="fa fa-check" label="Guardar" [disabled]="!equipForm.valid"></button>
             </div>
             <div class="ui-g-2"></div>
         </div>
         </form>
-     
+
   </div>
   <!-- <p-footer>
       <div class="ui-dialog-buttonpane ui-helper-clearfix">

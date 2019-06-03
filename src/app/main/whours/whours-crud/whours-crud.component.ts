@@ -39,7 +39,7 @@ export class WhoursCrudComponent implements OnInit, OnDestroy {
 
   constructor( private whourService:WhourService,private messageService: MessageService) { }
 
-  ngOnInit() {  
+  ngOnInit() {
     this.whours = [];
     this.plants = [];
     this.monthflag = 0;
@@ -50,17 +50,17 @@ export class WhoursCrudComponent implements OnInit, OnDestroy {
       if (plants.length >0){
         this.getEquips();
       }
-      
+
     })
 
     this.cols = [
-      { field: 'equip', header: 'Equipment' },
-      { field: 'date', header: 'Day' },
-      { field: 'month', header: 'Month' },
-      { field: 'start', header: 'Start Time'},
-      { field: 'end', header:'End Time'},
-      { field: 'wtime', header:'Working Time'},
-      { field: 'active', header:'Active'}
+      { field: 'equip', header: 'Equipo' },
+      { field: 'date', header: 'Día' },
+      { field: 'month', header: 'Mes' },
+      { field: 'start', header: 'Tiempo de inicio'},
+      { field: 'end', header:'Tiempo de termino'},
+      { field: 'wtime', header:'Tiempo de trabajo'},
+      { field: 'active', header:'Activo'}
     ];
 
   }
@@ -104,13 +104,13 @@ export class WhoursCrudComponent implements OnInit, OnDestroy {
     let whours = [...this.whours];
     let equip = this.whour['equip'];
     this.whourService.updateWhour(this.whour).then(()=>{
-      this.showMessage(true, `Working time for ${equip} has settled!`);   
+      this.showMessage(true, `El tiempo de trabajo para ${equip} se ha establecido!`);
     }).catch((e)=>{
       this.showMessage(false, `${e}`);
     });
     this.ctrlEnd.reset();
     this.ctrlStart.reset();
-    this.ctrlWtime.reset();     
+    this.ctrlWtime.reset();
     this.whour = null;
     this.displayDialog = false;
   }
@@ -128,7 +128,7 @@ export class WhoursCrudComponent implements OnInit, OnDestroy {
     } catch(e){
       return -1;
     }
-    
+
   }
 
   onRowSelect(event) {
@@ -140,7 +140,7 @@ export class WhoursCrudComponent implements OnInit, OnDestroy {
     let whour = {};
     for (let prop in c) {
         whour[prop] = c[prop];
-        
+
     }
 
     return whour;
@@ -152,7 +152,7 @@ export class WhoursCrudComponent implements OnInit, OnDestroy {
   isDate(val){
     return typeof val === 'object';
   }
-  
+
   ngOnDestroy(){
     this.unsubscribe.next();
     this.unsubscribe.complete();
@@ -179,7 +179,7 @@ export class WhoursCrudComponent implements OnInit, OnDestroy {
     }
     return `${hour} : ${minute}`;
   }
-  
+
 
   ctrlStart = new FormControl('', (control: FormControl) => {
     const value = control.value;
@@ -191,13 +191,13 @@ export class WhoursCrudComponent implements OnInit, OnDestroy {
       this.whour.end=value;
       return {laterThanEnd:true}
     }
-    
+
     return null;
   });
 
   ctrlEnd = new FormControl('', (control: FormControl) => {
     const value = control.value;
- 
+
     if (!value) {
       return null;
     }

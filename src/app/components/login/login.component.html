@@ -1,7 +1,7 @@
 <div class="row">
     <p-toast [style]="{marginTop: '20px'}"></p-toast>
   <div class="col-10 col-md-3 mx-auto">
-      
+
     <div class="card text-center" style="min-width: 400px;">
       <div class="card-body">
         <br><br><br>
@@ -10,17 +10,17 @@
         <div class="text-center">
             <img src="../../../assets/images/users/profile_icon.png" class=" mx-auto" style=" width:100px" alt="Login in Image">
         </div>
-        <h1 class="text-center" style="font-size:35px">Login</h1>
+        <h1 class="text-center" style="font-size:35px">Iniciar Sesión</h1>
         <form (submit)="onSubmit()">
           <div class="form-group">
             <label for='email'>Email</label>
             <input type='email' class="form-control" [(ngModel)]="email" name="email" required>
           </div>
           <div class="form-group">
-            <label for='password'>Password</label>
+            <label for='password'>Contraseña</label>
             <input type='password' class="form-control" [(ngModel)]="password" name="password" required>
           </div>
-          <input type="submit" value="Submit" class="btn btn-primary btn-block">
+          <input type="submit" value="Entrar" class="btn btn-primary btn-block">
         </form>
       </div>
     </div>

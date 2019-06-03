@@ -14,66 +14,66 @@ export const MainRoutes: Routes = [
         path:'plants',
         component: PlantsComponent,
         data: {
-         title: 'Plants',
-         urls: [{title: 'Dashboard',url: '/dashboard'},{title: 'plants'}]
-       } 
+         title: 'Plantas',
+         urls: [{title: 'Dashboard',url: '/dashboard'},{title: 'plantas'}]
+       }
     },
     {
         path:'equips',
         component: EquipmentsComponent,
         data: {
-         title: 'Equipments',
-         urls: [{title: 'Dashboard',url: '/dashboard'},{title: 'equipments'}]
-       } 
+         title: 'Equipos',
+         urls: [{title: 'Dashboard',url: '/dashboard'},{title: 'equipos'}]
+       }
     },
     {
         path:'species',
         component: SpeciesComponent,
         data: {
-         title: 'Species',
-         urls: [{title: 'Dashboard',url: '/dashboard'},{title: 'species'}]
-       } 
+         title: 'Productos',
+         urls: [{title: 'Dashboard',url: '/dashboard'},{title: 'productos'}]
+       }
     },
     {
         path:'business-days',
         component: BdaysComponent,
         data: {
-         title: 'Business Days',
-         urls: [{title: 'Dashboard',url: '/dashboard'},{title: 'business-days'}]
-       } 
+         title: 'Días Habiles',
+         urls: [{title: 'Dashboard',url: '/dashboard'},{title: 'días-habiles'}]
+       }
     },
     {
         path:'working-hours',
         component: WhoursComponent,
         data: {
-         title: 'Working hours',
-         urls: [{title: 'Dashboard',url: '/dashboard'},{title: 'working-hours'}]
-       } 
+         title: 'Horas Laborales',
+         urls: [{title: 'Dashboard',url: '/dashboard'},{title: 'horas-laborales'}]
+       }
     },
     {
         path:'users',
         component: UsersComponent,
         data: {
-         title: 'Users',
-         urls: [{title: 'Dashboard',url: '/dashboard'},{title: 'users'}]
-       } 
+         title: 'Usuarios',
+         urls: [{title: 'Dashboard',url: '/dashboard'},{title: 'usuarios'}]
+       }
     },
     {
         path:'records',
         component: RecordsComponent,
         data: {
-         title: 'Records',
-         urls: [{title: 'Dashboard',url: '/dashboard'},{title: 'records'}]
-       } 
+         title: 'Registros',
+         urls: [{title: 'Dashboard',url: '/dashboard'},{title: 'Registros'}]
+       }
     },
     {
         path:'reservations',
         component: ReservationsComponent,
         data: {
-         title: 'Reservations',
-         urls: [{title: 'Dashboard',url: '/dashboard'},{title: 'reservations'}]
-       } 
+         title: 'Reservas',
+         urls: [{title: 'Dashboard',url: '/dashboard'},{title: 'reservas'}]
+       }
     }
-    
-    
+
+
 ]

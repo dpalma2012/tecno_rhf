@@ -18,7 +18,7 @@ export class RecordsCrudComponent implements OnInit, OnDestroy {
   @ViewChild('dt') private _table: Table;
   dateFilters: any;
   plants: any[];
-  
+
   selectedPlant: any={};
   cols: any[];
 
@@ -51,15 +51,15 @@ export class RecordsCrudComponent implements OnInit, OnDestroy {
 
     this.cols = [
       { field: 'id', header: 'ID'},
-      { field: 'identifier', header: 'Identifier'},
-      { field: 'date', header: 'Date'},
-      { field: 'specieName', header:'Species'},
-      { field: 'operatorName', header: 'Operator'},
-      { field: 'phoneNumber', header:'Phone number'},
+      { field: 'identifier', header: 'Identificador'},
+      { field: 'date', header: 'Fecha'},
+      { field: 'specieName', header:'Producto'},
+      { field: 'operatorName', header: 'Operador'},
+      { field: 'phoneNumber', header:'Telefono'},
       { field: 'email', header:'Email'},
-      { field: 'rut_Carrier', header :'Rut Carrier'},
-      { field: 'patentTruck', header:'Patent Truck'},
-      { field: 'plantName', header: 'Plant'},
+      { field: 'rut_Carrier', header :'Rut Cargador'},
+      { field: 'patentTruck', header:'Patente Camión'},
+      { field: 'plantName', header: 'Planta'},
       { field: 'dumper', header:'Dumper'}
     ],
 
@@ -87,7 +87,7 @@ export class RecordsCrudComponent implements OnInit, OnDestroy {
   }
   isBoolean(val){
     return typeof val === 'boolean';  }
-    
+
   ngOnDestroy(){
     this.unsubscribe.next();
     this.unsubscribe.complete();

@@ -53,7 +53,7 @@ export class SpeciesCrudComponent implements OnInit, OnDestroy {
               key:s.key,
               equips: Object.keys(s.equips).map(key => ({key:s.equips[key].key, name:s.equips[key].name})),
               equipsName: this.getEquipsList(s.equips)})
-          } 
+          }
         })
       })
     });
@@ -66,9 +66,9 @@ export class SpeciesCrudComponent implements OnInit, OnDestroy {
     });
 
     this.cols = [
-      { field: 'name', header: 'Name' },
-      { field: 'equipsName', header: 'Equipments'},
-      { field: 'active', header: 'Active' },
+      { field: 'name', header: 'Nombre' },
+      { field: 'equipsName', header: 'Equipos'},
+      { field: 'active', header: 'Activo' },
     ];
 
   }
@@ -107,9 +107,9 @@ export class SpeciesCrudComponent implements OnInit, OnDestroy {
       {
           if (exists.length===0){
             this.specieService.newSpecie(this.specie);
-            this.showMessage(true,  `${this.specie.name} has been added!`);
+            this.showMessage(true,  `${this.specie.name} ha sido creado!`);
           } else {
-            this.showMessage(false, `${this.specie.name} has duplication.`);
+            this.showMessage(false, `${this.specie.name} tiene duplicación!`);
             return null;
           }
       }
@@ -117,10 +117,10 @@ export class SpeciesCrudComponent implements OnInit, OnDestroy {
         {
           if (exists.length===0||(exists.length===1&&exists[0].key===this.specie.key)){
             this.specieService.updateSpecie(this.specie.key, this.specie);
-            let detail = `${this.specie.name} has been updated!`
+            let detail = `${this.specie.name} ha sido actualizado!`
             this.showMessage(true, detail );
           } else {
-            this.showMessage(false, `${this.specie.name} has duplication.`);
+            this.showMessage(false, `${this.specie.name} tiene duplicación!`);
             return null;
           }
         }
@@ -134,7 +134,7 @@ export class SpeciesCrudComponent implements OnInit, OnDestroy {
 
   delete() {
     this.specieService.deleteSpecie(this.selectedSpecie).then(()=>{
-      this.showMessage(true, `${this.selectedSpecie.name} has been deleted.`);
+      this.showMessage(true, `${this.selectedSpecie.name} ha sido eliminado!.`);
     }).catch((e)=>{
       this.showMessage(false, `${e}`);
     });

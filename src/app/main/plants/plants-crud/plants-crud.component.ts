@@ -12,7 +12,7 @@ import {MessageService}  from 'primeng/api';
   templateUrl: './plants-crud.component.html',
   styleUrls: ['./plants-crud.component.css'],
   providers: [MessageService]
-  
+
 })
 export class PlantsCrudComponent implements OnInit, OnDestroy {
 
@@ -37,7 +37,7 @@ export class PlantsCrudComponent implements OnInit, OnDestroy {
   ngOnInit() {
       this.plantForm = this.fb.group({
         'name': new FormControl('', Validators.compose([Validators.required, Validators.pattern(".*\\S.*[a-zA-z0-9 ]")])),
-        'location': new FormControl('', Validators.compose([Validators.required, Validators.pattern(".*\\S.*[a-zA-z0-9 ]")])),  
+        'location': new FormControl('', Validators.compose([Validators.required, Validators.pattern(".*\\S.*[a-zA-z0-9 ]")])),
         'dumper': new FormControl(false),
         'active': new FormControl(false)
       })
@@ -47,10 +47,10 @@ export class PlantsCrudComponent implements OnInit, OnDestroy {
     });
 
     this.cols = [
-      { field: 'name', header: 'Name' },
-      { field: 'location', header: 'Location' },
+      { field: 'name', header: 'Nombre' },
+      { field: 'location', header: 'Ubicación' },
       { field: 'dumper', header: 'Dumper' },
-      { field: 'active', header: 'Active' },
+      { field: 'active', header: 'Activo' },
     ];
 
   }
@@ -71,27 +71,27 @@ export class PlantsCrudComponent implements OnInit, OnDestroy {
     let exists = plantNames.filter(item=>item.name.toLowerCase()===this.plant.name.toLowerCase());
     if (this.newPlant)
         {
-          
+
           if (exists.length===0){
             this.plantService.newPlant(this.plant);
-            const message = `${this.plant.name} has been created`;
+            const message = `${this.plant.name} ha sido creado!`;
             this.showMessage(true, message);
           } else {
-            const message = `${this.plant.name} has been duplicated`;
+            const message = `${this.plant.name} tiene duplicación!`;
             this.showMessage(false, message);
             return null;
           }
-          
+
       }
     else
         { if (exists.length===0||(exists.length===1&&exists[0].key===this.plant.key)){
           this.plantService.updatePlant(this.plant.key, this.plant);
-          this.showMessage(true, `${this.plant.name} has been updated!`);
+          this.showMessage(true, `${this.plant.name} ha sido actualizado!`);
         } else {
-          this.showMessage(false, `${this.plant.name} has duplication!`);
+          this.showMessage(false, `${this.plant.name} tiene duplicacion!`);
           return null;
         }
-          
+
         }
 
     this.plants = plants;
@@ -102,11 +102,11 @@ export class PlantsCrudComponent implements OnInit, OnDestroy {
   delete() {
     if (this.plant.key) {
       this.plantService.deletePlant(this.selectedPlant.key).then(()=>{
-        this.showMessage(true, `${this.plant.name} has been deleted!`);
+        this.showMessage(true, `${this.plant.name} ha sido eliminado!`);
       }).catch((e)=>{
         this.showMessage(false, `${e}`);
       });
-      
+
     }
     this.displayDialog = false;
   }
