@@ -13,29 +13,30 @@ export class UsersService {
   constructor(private db: AngularFireDatabase) { //Injecting Database
     this.usersRef = this.db.list('users');   //Settinng our property to our database collectionn
     this.users = this.usersRef.snapshotChanges().map(changes => { //maps through database and grabs key
-      return changes.map( c => ({key: c.payload.key, ...c.payload.val()
+      return changes.map(c => ({
+        key: c.payload.key, ...c.payload.val()
       }));
     });
   }
 
-  getUsers(){  // Setting up Callback Function to retrieve clients
+  getUsers() {  // Setting up Callback Function to retrieve clients
     return this.users;
   }
 
-  newUser(user: User){
+  newUser(user: User) {
     this.usersRef.push(user);
   }
 
-  getUser(id: string){
-    this.user = this.db.object('/users/'+id).valueChanges();
+  getUser(id: string) {
+    this.user = this.db.object('/users/' + id).valueChanges();
     return this.user;
   }
 
-  updateUser(id: string, user: User){
+  updateUser(id: string, user: User) {
     return this.usersRef.update(id, user);
   }
 
-  deleteUser(id: string){
+  deleteUser(id: string) {
     return this.usersRef.remove(id);
   }
 }

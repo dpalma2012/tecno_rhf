@@ -8,4 +8,5 @@ export interface User {
     phone?:string;
     rut?:string;
     type?:UserType;
+    company?;
 }

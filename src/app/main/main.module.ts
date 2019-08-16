@@ -12,19 +12,19 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { MainRoutes } from './main.routing';
 
-import {TableModule} from 'primeng/table';
-import {DialogModule} from 'primeng/dialog';
-import {ButtonModule} from 'primeng/button';
-import {InputTextModule} from 'primeng/inputtext';
-import {CheckboxModule} from 'primeng/checkbox';
-import {DropdownModule} from 'primeng/dropdown';
-import {InputMaskModule} from 'primeng/inputmask';
-import {GrowlModule} from 'primeng/growl';
-import {ToastModule} from 'primeng/toast';
-import {MessageModule} from 'primeng/message';
-import {CalendarModule} from 'primeng/calendar';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { CheckboxModule } from 'primeng/checkbox';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputMaskModule } from 'primeng/inputmask';
+import { GrowlModule } from 'primeng/growl';
+import { ToastModule } from 'primeng/toast';
+import { MessageModule } from 'primeng/message';
+import { CalendarModule } from 'primeng/calendar';
 import { MultipleDatePickerModule } from '../libs/multiple-date-picker-angular/multiple-date-picker.module';
-import {MultiSelectModule} from 'primeng/multiselect';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 
 import { PlantsComponent } from './plants/plants.component';
@@ -40,7 +40,7 @@ import { UsersCrudComponent } from './users/users-crud/users-crud.component';
 import { WhoursComponent } from './whours/whours.component';
 import { WhoursCrudComponent } from './whours/whours-crud/whours-crud.component';
 import { RecordsComponent } from './records/records.component';
-import { RecordsCrudComponent } from './records/records-crud/records-crud.component'; 
+import { RecordsCrudComponent } from './records/records-crud/records-crud.component';
 import { ReservationsComponent } from './reservations/reservations.component';
 import { ReservationsCrudComponent } from './reservations/reservations-crud/reservations-crud.component';
 
@@ -49,9 +49,12 @@ import { SpecieService } from './m-services/specie.service';
 import { UsersService } from './m-services/users.service';
 import { EquipmentService } from './m-services/equipment.service';
 import { BdayService } from './m-services/bday.service';
-import { WhourService} from './m-services/whour.service';
+import { WhourService } from './m-services/whour.service';
 import { RecordService } from './m-services/record.service';
-import { ReservationService} from './m-services/reservation.service';
+import { ReservationService } from './m-services/reservation.service';
+import { CompanysComponent } from './companys/companys.component';
+import { CompanysCrudComponent } from './companys/companys-crud/companys-crud.component';
+import { CompanyService } from './m-services/company.service';
 
 
 
@@ -96,9 +99,10 @@ import { ReservationService} from './m-services/reservation.service';
     RecordsCrudComponent,
     ReservationsComponent,
     ReservationsCrudComponent,
-
+    CompanysComponent,
+    CompanysCrudComponent
   ],
-  providers:[
+  providers: [
     AngularFireDatabase,
     AngularFireDatabaseModule,
     PlantService,
@@ -109,6 +113,7 @@ import { ReservationService} from './m-services/reservation.service';
     WhourService,
     RecordService,
     ReservationService,
+    CompanyService
   ],
 })
 export class MainModule { }

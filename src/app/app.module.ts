@@ -12,7 +12,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 
-import {ToastModule} from 'primeng/toast';
+import { ToastModule } from 'primeng/toast';
 
 import { FullComponent } from './layouts/full/full.component';
 
@@ -31,7 +31,6 @@ import { SpinnerComponent } from './shared/spinner.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth.service';
-
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -52,12 +51,12 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   imports: [
     CommonModule,
     BrowserModule,
-    BrowserAnimationsModule,   
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule.forRoot(),
-    RouterModule.forRoot(Approutes, { useHash: false }),  
+    RouterModule.forRoot(Approutes, { useHash: false }),
     PerfectScrollbarModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
@@ -72,10 +71,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     },
     {
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
     }
-    ],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

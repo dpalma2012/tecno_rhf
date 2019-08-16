@@ -2,15 +2,15 @@
 <p-table
   #dt
   [columns]="cols"
-  [value]="equips"
+  [value]="companys"
   selectionMode="single"
-  [(selection)]="selectedEquip"
+  [(selection)]="selectedCompany"
   (onRowSelect)="onRowSelect($event)"
   [paginator]="true"
   [rows]="15"
 >
   <ng-template pTemplate="caption">
-    Listado de Equipos
+    Listado de Empresas
     <div style="text-align: right">
       <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
       <input
@@ -66,7 +66,7 @@
 </p-table>
 
 <p-dialog
-  header="Detalle de Equipo"
+  header="Detalle de Empresa"
   [(visible)]="displayDialog"
   [responsive]="true"
   showEffect="fade"
@@ -74,8 +74,8 @@
   [width]="600"
   dismissableMask="true"
 >
-  <div class="ui-g ui-fluid" *ngIf="equip">
-    <form [formGroup]="equipForm" (ngSubmit)="save()">
+  <div class="ui-g ui-fluid" *ngIf="company">
+    <form [formGroup]="companyForm" (ngSubmit)="save()">
       <div class="ui-g-12">
         <div class="ui-g-2">
           <label for="name">Nombre</label>
@@ -86,10 +86,10 @@
             type="text"
             id="name"
             formControlName="name"
-            [(ngModel)]="equip.name"
+            [(ngModel)]="company.name"
             placeholder="Required"
-            [class.ng-dirty]="equipForm.controls['name'].dirty"
-            [class.ng-invalid]="!equipForm.controls['name'].valid"
+            [class.ng-dirty]="companyForm.controls['name'].dirty"
+            [class.ng-invalid]="!companyForm.controls['name'].valid"
           />
         </div>
         <div class="ui-g-4">
@@ -97,23 +97,10 @@
             severity="error"
             text="Name is required"
             *ngIf="
-              !equipForm.controls['name'].valid &&
-              equipForm.controls['name'].dirty
+              !companyForm.controls['name'].valid &&
+              companyForm.controls['name'].dirty
             "
           ></p-message>
-        </div>
-      </div>
-      <div class="ui-g-12">
-        <div class="ui-g-2">
-          <label for="plant">Planta</label>
-        </div>
-        <div class="ui-g-6">
-          <p-dropdown
-            [options]="plants"
-            [(ngModel)]="equip.plant"
-            formControlName="plant"
-            optionLabel="name"
-          ></p-dropdown>
         </div>
       </div>
       <div class="ui-g-12">
@@ -122,7 +109,7 @@
         </div>
         <div class="ui-g-6">
           <p-checkbox
-            [(ngModel)]="equip.active"
+            [(ngModel)]="company.active"
             formControlName="active"
             id="active"
             binary="true"
@@ -147,7 +134,7 @@
             type="submit"
             icon="fa fa-check"
             label="Guardar"
-            [disabled]="!equipForm.valid"
+            [disabled]="!companyForm.valid"
           ></button>
         </div>
         <div class="ui-g-2"></div>

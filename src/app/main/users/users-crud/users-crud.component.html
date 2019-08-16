@@ -274,6 +274,19 @@
         </div>
       </div>
       <div class="ui-g-12">
+        <div class="ui-g-2">
+          <label for="company">Empresa</label>
+        </div>
+        <div class="ui-g-6">
+          <p-dropdown
+            [options]="companys"
+            [(ngModel)]="user.company"
+            formControlName="company"
+            optionLabel="label"
+          ></p-dropdown>
+        </div>
+      </div>
+      <div class="ui-g-12">
         <div class="ui-g-2"></div>
         <div class="ui-g-4">
           <button

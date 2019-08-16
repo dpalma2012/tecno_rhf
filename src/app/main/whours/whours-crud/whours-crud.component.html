@@ -1,105 +1,219 @@
-
-<p-toast [style]="{marginTop: '80px'}"></p-toast>
-<p-dropdown [options]="plants" [(ngModel)]="selectedPlant" dataKey="key" optionLabel="name" [style]="{'minWidth':'200px'}" (onChange)="getEquips()"></p-dropdown>
-<br><br>
- <p-table #dt [columns]="cols" [value]="whours" selectionMode="single" [(selection)]="selectedWhour" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
-    <ng-template pTemplate="caption">
-        Lista de horas de trabajo
-        <div style="text-align: right">
-                <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-                <input type="text" pInputText size="25" placeholder="Filtro" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
-        </div>
-    </ng-template>
-    <ng-template pTemplate="header" let-columns>
-        <tr>
-            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                {{col.header}}
-                <p-sortIcon [field]="col.field"></p-sortIcon>
-            </th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr [pSelectableRow]="rowData">
-
-            <td>
-                <span>{{rowData['equip']}}</span>
-            </td>
-            <td>
-                <span *ngIf ="rowData['date']">{{toDate(rowData['date']) | date : 'dd-MM-yyyy'}}</span>
-            </td>
-            <td>
-                    <i *ngIf="rowData['month']===true" class="mdi mdi-check " style="color: #66bb6a"></i>
-                    <i *ngIf="rowData['month']===false" class="mdi mdi-window-close " style="color: #f06292"></i>
-            </td>
-            <td>
-                    <span>{{toFormatTime(rowData['start'] )}}</span>
-            </td>
-            <td>
-                    <span>{{toFormatTime(rowData['end'] )}}</span>
-            </td>
-            <td>
-                    <span *ngIf = "rowData['wtime']">{{rowData['wtime'] }} min</span>
-            </td>
-            <td>
-                    <i *ngIf="rowData['active']===true" class="mdi mdi-check " style="color: #66bb6a"></i>
-                    <i *ngIf="rowData['active']===false" class="mdi mdi-window-close " style="color: #f06292"></i>
-            </td>
-
-        </tr>
-    </ng-template>
-
+<p-toast [style]="{ marginTop: '80px' }"></p-toast>
+<p-dropdown
+  [options]="plants"
+  [(ngModel)]="selectedPlant"
+  dataKey="key"
+  optionLabel="name"
+  [style]="{ minWidth: '200px' }"
+  (onChange)="getEquips()"
+></p-dropdown>
+<br /><br />
+<p-table
+  #dt
+  [columns]="cols"
+  [value]="whours"
+  selectionMode="single"
+  [(selection)]="selectedWhour"
+  (onRowSelect)="onRowSelect($event)"
+  [paginator]="true"
+  [rows]="15"
+>
+  <ng-template pTemplate="caption">
+    Lista de horas de trabajo
+    <div style="text-align: right">
+      <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+      <input
+        type="text"
+        pInputText
+        size="25"
+        placeholder="Filtro"
+        (input)="dt.filterGlobal($event.target.value, 'contains')"
+        style="width:auto"
+      />
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+        {{ col.header }}
+        <p-sortIcon [field]="col.field"></p-sortIcon>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr [pSelectableRow]="rowData">
+      <td>
+        <span>{{ rowData["equip"] }}</span>
+      </td>
+      <td>
+        <span *ngIf="rowData['date']">{{
+          toDate(rowData["date"]) | date: "dd-MM-yyyy"
+        }}</span>
+      </td>
+      <td>
+        <i
+          *ngIf="rowData['month'] === true"
+          class="mdi mdi-check "
+          style="color: #66bb6a"
+        ></i>
+        <i
+          *ngIf="rowData['month'] === false"
+          class="mdi mdi-window-close "
+          style="color: #f06292"
+        ></i>
+      </td>
+      <td>
+        <span>{{ toFormatTime(rowData["start"]) }}</span>
+      </td>
+      <td>
+        <span>{{ toFormatTime(rowData["end"]) }}</span>
+      </td>
+      <td>
+        <span *ngIf="rowData['wtime']">{{ rowData["wtime"] }} min</span>
+      </td>
+      <td>
+        <i
+          *ngIf="rowData['active'] === true"
+          class="mdi mdi-check "
+          style="color: #66bb6a"
+        ></i>
+        <i
+          *ngIf="rowData['active'] === false"
+          class="mdi mdi-window-close "
+          style="color: #f06292"
+        ></i>
+      </td>
+    </tr>
+  </ng-template>
 </p-table>
 
-<p-dialog header="Detalles de la hora de trabajo" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="400" dismissableMask="true">
-    <div class="ui-g ui-fluid" *ngIf="whour">
-        <div class="ui-g-12" >
-            <div class="ui-g-4" style="margin-top:45px">
-                <label for="start">Hora de inicio</label>
-            </div>
-            <div class="ui-g-8">
-            <div class="form-group"  [class.has-danger]="!ctrlStart.valid&&!ctrlEnd.valid">
-                <ngb-timepicker [(ngModel)]="whour.start" [formControl]="ctrlStart" required></ngb-timepicker>
-            </div>
-            </div>
+<p-dialog
+  header="Detalles de la hora de trabajo"
+  [(visible)]="displayDialog"
+  [responsive]="true"
+  showEffect="fade"
+  [modal]="true"
+  [width]="400"
+  dismissableMask="true"
+>
+  <div class="ui-g ui-fluid" *ngIf="whour">
+    <div class="ui-g-12">
+      <div class="ui-g-4" style="margin-top:45px">
+        <label for="start">Hora de inicio</label>
+      </div>
+      <div class="ui-g-8">
+        <div
+          class="form-group"
+          [class.has-danger]="!ctrlStart.valid && !ctrlEnd.valid"
+        >
+          <ngb-timepicker
+            [(ngModel)]="whour.start"
+            [formControl]="ctrlStart"
+            required
+          ></ngb-timepicker>
         </div>
-        <div class="ui-g-12" >
-            <div class="ui-g-4" style="margin-top:45px">
-                <label for="end">Hora de termino</label>
-            </div>
-            <div class="ui-g-8">
-                <div class="form-group" [class.has-danger]="!ctrlStart.valid&&!ctrlEnd.valid">
-                    <ngb-timepicker [(ngModel)]="whour.end" [formControl]="ctrlEnd" required></ngb-timepicker>
-                </div>
-            </div>
-        </div>
-        <div class="ui-g-12" >
-            <div class="ui-g-4">
-                <label for="brand">Tiempo de trabajo</label>
-            </div>
-            <div class="ui-g-4">
-                <input pInputText type="number" id="wtime" [(ngModel)]="whour.wtime" [formControl]="ctrlWtime" placeholder="Required" [class.ng-dirty]="ctrlWtime.dirty" [class.ng-invalid]="ctrlWtime.valid"/>
-            </div>
-        </div>
-        <div class="ui-g-12" *ngIf="!whour.date">
-            <div class="ui-g-4">
-                <label for="brand">Mes</label>
-            </div>
-            <div class="ui-g-8">
-                <p-checkbox [(ngModel)]="whour.month" id="month" binary="true"></p-checkbox>
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="brand">Activo</label>
-            </div>
-            <div class="ui-g-8">
-                <p-checkbox [(ngModel)]="whour.active" id="active" binary="true"></p-checkbox>
-            </div>
-        </div>
+      </div>
     </div>
-    <p-footer>
-        <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" pButton icon="fa fa-check" (click)="save()" label="Guardar" [disabled] ="(!ctrlStart.valid&&!ctrlEnd.valid   )||!ctrlWtime.valid"></button>
+    <div class="ui-g-12">
+      <div class="ui-g-4" style="margin-top:45px">
+        <label for="end">Hora de termino</label>
+      </div>
+      <div class="ui-g-8">
+        <div
+          class="form-group"
+          [class.has-danger]="!ctrlStart.valid && !ctrlEnd.valid"
+        >
+          <ngb-timepicker
+            [(ngModel)]="whour.end"
+            [formControl]="ctrlEnd"
+            required
+          ></ngb-timepicker>
         </div>
-    </p-footer>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="brand">Tiempo de trabajo</label>
+      </div>
+      <div class="ui-g-4">
+        <input
+          pInputText
+          type="number"
+          id="wtime"
+          [(ngModel)]="whour.wtime"
+          [formControl]="ctrlWtime"
+          placeholder="Required"
+          [class.ng-dirty]="ctrlWtime.dirty"
+          [class.ng-invalid]="ctrlWtime.valid"
+          (keyup)="calcularhorasCompany()"
+        />
+        (minutos)
+      </div>
+    </div>
+    <div class="ui-g-12" *ngIf="!whour.date">
+      <div class="ui-g-4">
+        <label for="brand">Mes</label>
+      </div>
+      <div class="ui-g-8">
+        <p-checkbox
+          [(ngModel)]="whour.month"
+          id="month"
+          binary="true"
+        ></p-checkbox>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="brand">Activo</label>
+      </div>
+      <div class="ui-g-8">
+        <p-checkbox
+          [(ngModel)]="whour.active"
+          id="active"
+          binary="true"
+        ></p-checkbox>
+      </div>
+    </div>
+
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="brand">Cantidad de horas</label>
+      </div>
+      <div class="ui-g-8" *ngIf="whour.wtime">
+        {{
+          calculateDuration(whour.start, whour.end) / whour.wtime
+            | number: "1.0-0"
+        }}
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-12 text-center font-bold">
+        <label>Horas por Empresas</label>
+      </div>
+    </div>
+    <div class="ui-g-12" *ngFor="let company of companys; let i = index">
+      <div class="ui-g-6">{{ company.name }}</div>
+      <div class="ui-g-6" *ngIf="whour.companys">
+        <input pInputText type="number" [value]="whour.companys[i]?.amount_hour" placeholder="Cantidad de horas" #ref (keyup)="pushTime(company.name, ref)"/>
+      </div>
+      <div class="ui-g-6" *ngIf="!whour.companys">
+        <input pInputText type="number" placeholder="Cantidad de horas" #ref (keyup)="pushTime(company.name, ref)"/>
+      </div>
+    </div>
+    <div *ngIf="companysValidation">
+      <p class="text-danger">Por favor verifique la cantidad de horas asignadas, la configuracion actual no es correcta.</p>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button
+        type="button"
+        pButton
+        icon="fa fa-check"
+        (click)="save()"
+        label="Guardar"
+        [disabled]="(!ctrlStart.valid && !ctrlEnd.valid) || !ctrlWtime.valid || companysValidation"
+      ></button>
+    </div>
+  </p-footer>
 </p-dialog>

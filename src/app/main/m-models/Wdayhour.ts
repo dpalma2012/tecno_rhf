@@ -10,5 +10,5 @@ export interface Wdayhour{
     end?:string;
     wtime?:number;
     active?:boolean;
-
+    companys?: Array<any>;
 }
