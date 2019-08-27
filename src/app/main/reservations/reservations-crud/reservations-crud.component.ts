@@ -102,12 +102,12 @@ export class ReservationsCrudComponent implements OnInit {
   toDate(val, hour, min){
     let hh = hour;
     let ii = min;
-    if (hh<10){
+    /* if (hh<10){
       hh = '0'+hh;
     }
     if (ii<10){
       ii = '0'+ii;
-    }
+    } */
 
     return moment(val).format('YYYY-MM-DD')+' '+hh+':'+ii;
   }
