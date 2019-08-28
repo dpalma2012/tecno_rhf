@@ -57,11 +57,7 @@ import { CompanysCrudComponent } from './companys/companys-crud/companys-crud.co
 import { CompanyService } from './m-services/company.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardCrudComponent } from './dashboard/dashboard-crud/dashboard-crud.component';
-
-
-
-
-
+import { CalendarModule as Calendario } from 'angular-calendar';
 @NgModule({
   imports: [
     CommonModule,
@@ -82,7 +78,8 @@ import { DashboardCrudComponent } from './dashboard/dashboard-crud/dashboard-cru
     MessageModule,
     ToastModule,
     CalendarModule,
-    MultiSelectModule
+    MultiSelectModule,
+    Calendario
   ],
   declarations: [
     PlantsComponent,

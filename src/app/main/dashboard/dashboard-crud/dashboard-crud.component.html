@@ -12,7 +12,7 @@
   <div class="col-12">
     <h5>Producto: {{ selectedEspecie?.name }}</h5>
 
-    <ul class="list-group">
+    <!-- <ul class="list-group">
       <li
         class="list-group-item list-group-item-success"
         *ngFor="let item of horas"
@@ -46,6 +46,12 @@
       >
         Sin reservas
       </li>
-    </ul>
+    </ul> -->
   </div>
 </div>
+<mwl-calendar-day-view
+  [viewDate]="viewDate"
+  [events]="events"
+  [dayStartHour]="0"
+  [dayEndHour]="24"
+></mwl-calendar-day-view>
