@@ -8,9 +8,19 @@ import { UsersComponent } from './users/users.component';
 import { RecordsComponent } from './records/records.component';
 import { ReservationsComponent } from './reservations/reservations.component';
 import { CompanysComponent } from './companys/companys.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const MainRoutes: Routes = [
-  { path: '', redirectTo: 'plants', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    data: {
+      title: 'Dashboard',
+      urls: [{ title: 'Dashboard', url: '/dashboard' }, { title: 'Dashboard' }]
+    }
+  },
   {
     path: 'plants',
     component: PlantsComponent,

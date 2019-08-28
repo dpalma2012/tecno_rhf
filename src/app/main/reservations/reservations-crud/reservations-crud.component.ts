@@ -47,9 +47,8 @@ export class ReservationsCrudComponent implements OnInit {
           this.getReservations();
         })
       }
-
-
     });
+
     this.cols = [
       { field: 'id', header: 'Id'},
       { field: 'date', header: 'Fecha'},

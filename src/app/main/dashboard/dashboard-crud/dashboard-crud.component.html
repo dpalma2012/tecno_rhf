@@ -1,0 +1,51 @@
+<h3>Resumen del día</h3>
+<p-dropdown
+  [options]="especies"
+  [(ngModel)]="selectedEspecie"
+  dataKey="key"
+  optionLabel="name"
+  [style]="{ minWidth: '200px' }"
+  (onChange)="change()"
+></p-dropdown>
+
+<div class="row mt-4">
+  <div class="col-12">
+    <h5>Producto: {{ selectedEspecie?.name }}</h5>
+
+    <ul class="list-group">
+      <li
+        class="list-group-item list-group-item-success"
+        *ngFor="let item of horas"
+      >
+        <table class="w-100">
+          <tr>
+            <td>Patente</td>
+            <td>{{ item.patentTruck }}</td>
+          </tr>
+          <tr>
+            <td>Empresa</td>
+            <td>{{ item.company }}</td>
+          </tr>
+          <tr>
+            <td>Guia</td>
+            <td>{{ item.officeGuide }}</td>
+          </tr>
+          <tr>
+            <td>Hora</td>
+            <td>
+              <span class="badge badge-primary font-16"
+                >{{ item.time_hour }}:{{ item.time_minute }}</span
+              >
+            </td>
+          </tr>
+        </table>
+      </li>
+      <li
+        *ngIf="horas.length == 0"
+        class="list-group-item list-group-item-danger"
+      >
+        Sin reservas
+      </li>
+    </ul>
+  </div>
+</div>

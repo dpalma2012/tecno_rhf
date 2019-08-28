@@ -5,6 +5,9 @@ export const ROUTES: RouteInfo[] = [
     path: '', title: 'Menu', icon: '', class: 'nav-small-cap', label: '', labelClass: '', extralink: true, submenu: []
   },
   {
+    path: '/main/dashboard', title: 'Dashboard', icon: 'mdi mdi-home', class: '', label: '', labelClass: '', extralink: false, submenu: []
+  },
+  {
     path: '/main/plants', title: 'Plantas', icon: 'mdi mdi-factory', class: '', label: '', labelClass: '', extralink: false, submenu: []
   },
   {

@@ -55,6 +55,8 @@ import { ReservationService } from './m-services/reservation.service';
 import { CompanysComponent } from './companys/companys.component';
 import { CompanysCrudComponent } from './companys/companys-crud/companys-crud.component';
 import { CompanyService } from './m-services/company.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardCrudComponent } from './dashboard/dashboard-crud/dashboard-crud.component';
 
 
 
@@ -100,7 +102,9 @@ import { CompanyService } from './m-services/company.service';
     ReservationsComponent,
     ReservationsCrudComponent,
     CompanysComponent,
-    CompanysCrudComponent
+    CompanysCrudComponent,
+    DashboardComponent,
+    DashboardCrudComponent
   ],
   providers: [
     AngularFireDatabase,
